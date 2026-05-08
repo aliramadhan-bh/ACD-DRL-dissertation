@@ -1,0 +1,7 @@
+pytest
+paramiko
+pyyaml
+numpy
+gymnasium
+prettytable
+docutils

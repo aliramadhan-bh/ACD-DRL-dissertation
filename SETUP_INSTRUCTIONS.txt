@@ -1,0 +1,162 @@
+================================================================================
+CAGE Challenge 2 - Environment Setup Instructions
+================================================================================
+
+This document describes how the environment was set up and packages installed.
+
+================================================================================
+1. CLONE THE REPOSITORY
+================================================================================
+
+git clone https://github.com/cage-challenge/cage-challenge-2.git
+cd cage-challenge-2
+
+
+================================================================================
+2. CREATE VIRTUAL ENVIRONMENT
+================================================================================
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+
+================================================================================
+3. INSTALL CYBORG PACKAGE
+================================================================================
+
+The setup.py file needed to be corrected first. The paths were updated to:
+- 'Requirements.txt' (instead of 'CybORG/Requirements.txt')
+- 'CybORG/version.txt' (instead of 'CybORG/CybORG/version.txt')
+
+Then install CybORG in editable mode:
+
+pip install -e ./CybORG
+
+
+================================================================================
+4. PACKAGES INSTALLED
+================================================================================
+
+The following packages are installed via CybORG/Requirements.txt:
+
+Core Requirements:
+- pytest          (testing framework)
+- paramiko        (SSH functionality)
+- pyyaml          (YAML parsing)
+- numpy           (numerical computing)
+- gymnasium       (reinforcement learning environment - updated from 'gym')
+- prettytable     (table formatting)
+- docutils        (documentation tools)
+
+Additional packages installed for ML/RL development:
+- torch           (PyTorch for deep learning)
+- jax             (JAX for high-performance ML)
+- flax            (neural network library for JAX)
+
+Note: The original Requirements.txt had 'gym' which is deprecated.
+We updated it to 'gymnasium' which is the maintained replacement.
+
+
+================================================================================
+5. VERIFY INSTALLATION
+================================================================================
+
+Activate the virtual environment:
+
+    source .venv/bin/activate
+
+Run the verification tests:
+
+    cd CybORG
+    pytest CybORG/Tests/test_sim/test_sim_Cyborg.py -v
+
+Expected result: 16 passed
+
+Run the API tests:
+
+    pytest CybORG/Tests/test_sim/test_Acceptance/test_cyborg_api.py -v
+
+Expected result: 7 passed, 1 skipped
+
+
+================================================================================
+6. RUN EXPLORATION SCRIPTS
+================================================================================
+
+To explore how the challenge works:
+
+    cd CybORG
+    python explore_challenge.py
+
+Or:
+
+    cd CybORG
+    python explore_iPython.py
+
+
+================================================================================
+7. RUN TRAINING EXAMPLE
+================================================================================
+
+    cd CybORG
+    python -c "from CybORG.Agents.training_example import run_training_example; run_training_example('Scenario1b')"
+
+
+================================================================================
+8. IMPORTANT NOTES
+================================================================================
+
+- Always run Python scripts from inside the CybORG/ directory
+- Always activate the virtual environment first: source .venv/bin/activate
+- The VSCode "Run" button may not work correctly due to directory issues
+- Use the terminal instead: cd CybORG && python your_script.py
+
+Directory structure:
+    cage-challenge-2/
+    ├── .venv/                 (virtual environment)
+    ├── CybORG/
+    │   ├── setup.py           (package setup)
+    │   ├── Requirements.txt   (dependencies)
+    │   ├── CybORG/            (main package code)
+    │   │   ├── Agents/        (agent implementations)
+    │   │   ├── Shared/        (scenarios, actions)
+    │   │   └── Tests/         (unit tests)
+    │   ├── explore_challenge.py
+    │   └── explore_iPython.py
+    └── README.md
+
+
+================================================================================
+9. GYM TO GYMNASIUM MIGRATION
+================================================================================
+
+The original project used 'gym' (OpenAI Gym) which is deprecated.
+We updated Requirements.txt to use 'gymnasium' instead.
+
+Note: Some code in CybORG may still import 'gym'. A full migration would
+require updating all imports from:
+    import gym
+to:
+    import gymnasium as gym
+
+
+================================================================================
+10. PACKAGES LIST (pip list output)
+================================================================================
+
+Key packages installed:
+- CybORG           2.1
+- gymnasium        1.2.3
+- numpy            2.3.5
+- torch            2.x
+- jax              0.9.x
+- pytest           9.0.2
+- paramiko         4.0.0
+- PyYAML           6.0.3
+- prettytable      3.17.0
+- docutils         0.22.4
+
+
+================================================================================
+END OF SETUP INSTRUCTIONS
+================================================================================
